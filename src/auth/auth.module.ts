@@ -8,7 +8,7 @@ import { UserSchema } from 'src/users/schema/useres.model';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies/jwt-auth.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
-import { UsersModule } from '../../dist/users/users.module';
+import { UsersModule } from '../users/users.module';
 @Module({
   imports:[MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
   PassportModule,
