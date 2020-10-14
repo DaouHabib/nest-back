@@ -30,7 +30,7 @@ async signUp(authCredentialsDto: AuthCredentialsDto): Promise<any> {
   async signIn(user: User) {
    let users :any;
    await this.getuserByEmail(user.email).then( res=>{users =res});
-   
+   user.save();
    const payload = { email: users.email,phone:users.phone,password:users.password,role:user.Role, sub: users._id };
     return {
       _id:users._id,
