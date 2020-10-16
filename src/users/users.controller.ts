@@ -7,7 +7,7 @@ export class UsersController {
 
 constructor(private readonly useresService: UsersService)
 {}
-@Get("sendEmail")
+@Post("sendEmail")
   sendMail( @Body('email') email: string): any {
     return this.useresService.sendEmail(email);
   }
@@ -38,10 +38,10 @@ getProduct(@Param('id') userId: string) {
 }
 
 @Put(':id')
-async updateProduct(
+async updateUser(
   @Param('id') userId: string,
   @Body('email') email: string,
-  @Body('phone') phone: number
+  @Body('phone') phone: number,
 
 ) {
  let user= await this.useresService.updateUser(userId, email, phone);
