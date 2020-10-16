@@ -8,7 +8,7 @@ import { Userdto } from './dto/createuserdto';
 import { User } from './interfaces/user.interface';
 import { MailerService } from '@nestjs-modules/mailer';
 import { JwtService } from '@nestjs/jwt';
-
+const bcrypt = require('bcrypt');
 @Injectable()
 export class UsersService {
   private readonly users: Userdto[];
@@ -66,7 +66,8 @@ export class UsersService {
   async updateUser(
     id: string,
     email: string,
-    phone: number
+    phone: number,
+    password:string
 
   ) {
     const updatedUser = await this.findUser(id);
@@ -76,6 +77,9 @@ export class UsersService {
 
     if (phone) {
       updatedUser.phone = phone;
+    }
+    if (password){
+      updatedUser.password=await bcrypt.hash(password, 10);
     }
 
     updatedUser.save();

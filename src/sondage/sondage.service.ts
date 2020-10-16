@@ -68,7 +68,13 @@ else{
     return Sondages; 
   }
   }
-
+  async getbestPosts(userId:string) {
+    const Sondages = await this.sondageModel.find({userId:userId}).exec();
+  let result : any;
+  let max : any; 
+  result= Sondages.sort(function(a, b){return (a.oui+a.non)-(b.oui+b.non)})
+return result.slice(-1); 
+}
   private async findSondage(SondageId: string): Promise<Sondage> {
     let Sondage;
     try {

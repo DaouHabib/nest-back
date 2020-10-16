@@ -69,5 +69,8 @@ async removeProduct(@Param('id') sondageId: string) {
 getlastSondages(@Param('userid') userId: string) {
   return this.sondageService.getlastPosts(userId);
 }
-
+@Get('best/:userid')
+getbestSondage(@Param('userid') userId: string) {
+  return this.sondageService.getbestPosts(userId);
+}
 }

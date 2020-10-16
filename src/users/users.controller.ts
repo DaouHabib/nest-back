@@ -42,9 +42,9 @@ async updateUser(
   @Param('id') userId: string,
   @Body('email') email: string,
   @Body('phone') phone: number,
-
+  @Body('password') password: string,
 ) {
- let user= await this.useresService.updateUser(userId, email, phone);
+ let user= await this.useresService.updateUser(userId, email, phone,password);
   return user;
 }
 
