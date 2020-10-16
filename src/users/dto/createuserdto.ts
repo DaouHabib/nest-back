@@ -9,6 +9,7 @@ export interface Userdto {
       type: String,
       enum: [ "ADMIN", "USER"]
   },
-  sondages: [any]
+  sondages: [any],
+  filename:string,
   }
   

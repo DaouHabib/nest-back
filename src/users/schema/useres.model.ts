@@ -8,6 +8,7 @@ export const UserSchema = new mongoose.Schema({
     type: String,
     enum: [ "ADMIN", "USER"]
 },
+filename: { type: String },
 sondages: [{
   type: mongoose.Schema.Types.ObjectId,
   ref: "Sondage"

@@ -6,13 +6,17 @@ import { Sondagedto } from '../sondage/dto/createSondagedto';
 import { Sondage } from '../sondage/interfaces/Sondage.interface';
 import { Userdto } from './dto/createuserdto';
 import { User } from './interfaces/user.interface';
+import { MailerService } from '@nestjs-modules/mailer';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
     private readonly users: Userdto[];
 
     constructor(@InjectModel('User') private  userModel: Model<User>,
-    ) {
+    private readonly jwtService:JwtService,
+    private readonly mailerService: MailerService
+     ) {
       
     } 
    
@@ -109,5 +113,23 @@ export class UsersService {
         const result = await this.userModel.findById( idUser);
         return result.sondages.slice(-2);
       }
-
+    async sendEmail(email:string){
+        let user =  await this.userModel.findOne({ email:email});
+        if (!user) return "Error";
+        
+ this
+      .mailerService
+      .sendMail({
+        to: 'habib.daou@esprit.tn', // List of receivers email address
+        from: 'nolivetg@gmail.com', // Senders email address
+        subject: 'Testing Nest Mailermodule with template ✔',
+        text: 'welcome',
+      })
+      .then((success) => {
+        console.log(success)
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+     }
 }

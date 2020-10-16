@@ -15,7 +15,7 @@ import { UsersModule } from '../users/users.module';
   UsersModule,
   JwtModule.register({
     secret: "habib",
-    signOptions: { expiresIn: '60s' },
+    signOptions: { expiresIn: '600s' },
   }),
 
 

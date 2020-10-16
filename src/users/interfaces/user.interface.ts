@@ -11,6 +11,7 @@ export interface User extends Document{
       type: String,
       enum: [ "ADMIN", "USER"]
   },
+  filename:string,
   sondages: [any]
   }
   

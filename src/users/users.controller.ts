@@ -7,6 +7,10 @@ export class UsersController {
 
 constructor(private readonly useresService: UsersService)
 {}
+@Get("sendEmail")
+  sendMail( @Body('email') email: string): any {
+    return this.useresService.sendEmail(email);
+  }
 
 @Post()
 async adduser(

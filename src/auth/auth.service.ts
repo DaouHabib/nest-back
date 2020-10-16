@@ -2,15 +2,13 @@ import { ConflictException, forwardRef, Inject, Injectable } from '@nestjs/commo
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { from, Observable, of } from 'rxjs';
 import { User } from 'src/users/interfaces/user.interface';
-import { UsersService } from '../users/users.service';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 const bcrypt = require('bcrypt');
 @Injectable()
 export class AuthService { 
 
-constructor(private readonly jwtService:JwtService,@InjectModel('User') private userModel: Model<User>,private userService:UsersService){}
+constructor(private readonly jwtService:JwtService,@InjectModel('User') private userModel: Model<User>){}
 async signUp(authCredentialsDto: AuthCredentialsDto): Promise<any> {
     const { email, password,phone,Role } = authCredentialsDto;
     let email2 ;
@@ -30,7 +28,6 @@ async signUp(authCredentialsDto: AuthCredentialsDto): Promise<any> {
   async signIn(user: User) {
    let users :any;
    await this.getuserByEmail(user.email).then( res=>{users =res});
-   user.save();
    const payload = { email: users.email,phone:users.phone,password:users.password,role:user.Role, sub: users._id };
     return {
       _id:users._id,
