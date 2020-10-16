@@ -17,19 +17,19 @@ import { MailerModule } from '@nestjs-modules/mailer';
     MailerModule.forRoot({
       transport: {
         host: 'smtp.office365.com',
-        port: 587,
         service:"gmail",
+        port: 587,
         tls: {
           ciphers: 'SSLv3',
         },
         secure: false, // true for 465, false for other ports
         auth: {
-          user: "nolivetg@gmail.com", // generated ethereal user
-          pass: "mdrlol23", // generated ethereal password
+          user:"nolivetg@gmail.com", // generated ethereal user
+          pass: "mdrlol123", // generated ethereal password
         },
       },
       defaults: {
-        from: '"nest-modules" <user@outlook.com>', // outgoing email ID
+        from: '"nest-modules" <nolivetg@gmail.com>', // outgoing email ID
       },
     
     }),

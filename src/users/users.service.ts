@@ -126,9 +126,11 @@ export class UsersService {
         text: 'welcome',
       })
       .then((success) => {
+       
         console.log(success)
       })
       .catch((err) => {
+     
         console.log(err)
       });
      }

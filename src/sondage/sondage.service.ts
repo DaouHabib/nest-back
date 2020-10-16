@@ -59,7 +59,15 @@ export class SondageService {
       userId: Sondage.userId
     }));
   }
-
+  async getlastPosts(userId:string) {
+    const Sondages = await this.sondageModel.find({userId:userId}).exec();
+    if(Sondages.length>2){
+      return Sondages.slice(-3);
+    }
+else{
+    return Sondages; 
+  }
+  }
 
   private async findSondage(SondageId: string): Promise<Sondage> {
     let Sondage;
